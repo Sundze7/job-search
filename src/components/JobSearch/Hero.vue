@@ -1,6 +1,6 @@
 <template>
-  <main class="flex flex-col pt-10 pb-20">
-    <section class="flex flex-col h-screen pt-10 pb-20">
+  <main class="flex flex-col h-screen pt-10 pb-20">
+    <section class="flex flex-col pt-10 pb-20">
       <div class="grid grid-cols-12">
         <div class="col-start-1 col-span-1"></div>
         <div class="col-start-2 col-span-5">
@@ -8,11 +8,7 @@
           <job-search-form />
         </div>
         <div class="col-start-7 col-span-5 self-center justify-self-center">
-          <img
-            class="w-80 h-80 object-contain"
-            src="/home/sundze/Desktop/VueProject/job-search/src/assets/logo.jpg"
-            alt="picture"
-          />
+          <img class="w-80 h-80 object-contain" :src="logo" alt="picture" />
         </div>
         <div class="col-start-12 col-span-1"></div>
       </div>
@@ -47,6 +43,7 @@
 </template>
 
 <script>
+import logo from "@/assets/logo.jpg";
 import Headline from "@/components/JobSearch/Headline.vue";
 import JobSearchForm from "@/components/JobSearch/JobSearchForm.vue";
 import Spotlight from "@/components/JobSearch/Spotlight.vue";
@@ -57,6 +54,11 @@ export default {
     Headline,
     JobSearchForm,
     Spotlight,
+  },
+  data() {
+    return {
+      logo,
+    };
   },
 };
 </script>

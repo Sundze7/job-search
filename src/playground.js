@@ -133,14 +133,103 @@
 
 // console.log(numbers);
 
-//10. Filter Array Method
-// const numbers = [1, 3, 5, 7, 2, 9, 11, 6];
-// console.log(numbers.filter((number) => number > 6));
+// //10. Filter Array Method
+// // const numbers = [1, 3, 5, 7, 2, 9, 11, 6];
+// // console.log(numbers.filter((number) => number > 6));
 
-const jobs = [
-  { title: "Angular Developer", organization: "Microsoft" },
-  { title: "Programmer", organization: "Google" },
-  { title: "Developer", organization: "Microsoft" },
-];
+// const jobs = [
+//   { title: "Angular Developer", organization: "Microsoft" },
+//   { title: "Programmer", organization: "Google" },
+//   { title: "Developer", organization: "Microsoft" },
+// ];
 
-console.log(jobs.filter((job) => job.organization !== "Microsoft"));
+// console.log(jobs.filter((job) => job.organization !== "Microsoft"));
+
+//11 VUE ref function - it returns a JS object which is able to deal with reactivity
+//the computed fxn allows us to tie the dynamic computation of a value to some kind of other reactive value
+
+const { reactive, computed } = require("vue");
+//const { ref } = require("vue")
+
+//a. with numbers
+// let a = ref(1);
+// let b = ref(2);
+
+// let c = computed(() => a.value + b.value);
+// console.log(c.value);
+
+// a.value = 10;
+// console.log(c.value);
+
+// b.value = 15;
+// console.log(c.value);gs
+
+// //b. with strings
+// const name = ref("Boris");
+
+// const title = computed(() => name.value + " the Great");
+// console.log(title.value);
+
+// name.value = "Peter";
+// console.log(title.value);
+
+// //c. ref fxn with objects
+// const person = ref({
+//   name: "Mike",
+// });
+
+// const title = computed(() => person.value.name + " the Mighty");
+// console.log(title.value);
+
+// person.value.name = "Sundze";
+// console.log(title.value);
+
+// //d. reactive fxn: this fxn is specifically for objects
+// const person = reactive({
+//   name: "Mike",
+// });
+
+// const title = computed(() => person.name + " the Mighty");
+// console.log(title.value);
+
+// person.name = "Sundze";
+// console.log(title.value);
+
+// //e. multiple proprties on reactive object
+// const person = reactive({
+//   firstName: "Mike",
+//   lastName: "Meros",
+// });
+
+// const title = computed(
+//   () => `${person.firstName} ${person.lastName} the Mighty`
+// );
+// const titleLength = computed(() => title.value.length);
+// console.log(title.value);
+// console.log(titleLength.value);
+
+// person.firstName = "Sundze";
+// console.log(title.value);
+// console.log(titleLength.value);
+
+// person.lastName = "Napoleon";
+// console.log(title.value);
+// console.log(titleLength.value);
+
+//f. Destructuring object with toRef fxn. this fxn receives only reactive objects as arguments
+const { toRefs } = require("vue");
+
+const person = reactive({
+  firstName: "Mike",
+  lastName: "Meros",
+});
+const { firstName, lastName } = toRefs(person);
+
+const title = computed(() => `${firstName.value} ${lastName.value} the Mighty`);
+console.log(title.value);
+
+person.firstName = "Sundze";
+console.log(title.value);
+
+person.lastName = "Napoleon";
+console.log(title.value);

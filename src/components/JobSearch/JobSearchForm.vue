@@ -51,7 +51,7 @@ export default {
     TextInput,
   },
   setup() {
-    const router = useRouter;
+    const router = useRouter();
 
     const role = ref("");
     const location = ref("");

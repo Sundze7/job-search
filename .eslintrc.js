@@ -19,10 +19,14 @@ module.exports = {
       },
     },
   ],
-
   extends: [
     "plugin:vue/vue3-recommended",
     "eslint:recommended",
     "plugin:prettier/recommended",
+    "@vue/typescript",
   ],
+
+  parserOptions: {
+    parser: "@typescript-eslint/parser",
+  },
 };

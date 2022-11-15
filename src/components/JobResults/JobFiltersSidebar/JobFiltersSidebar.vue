@@ -25,7 +25,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted } from "vue";
+
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+
+import { key } from "@/store";
+import { UPDATE_SKILL_SEARCH_TERM } from "@/store/contants";
 
 import Accordion from "@/components/Shared/Accordion.vue";
 
@@ -44,6 +50,16 @@ export default defineComponent({
     JobFiltersSidebarDegrees,
     JobFiltersSidebarPrompt,
     JobFiltersSidebarSkills,
+  },
+  setup() {
+    const parseSkillSearchForm = () => {
+      const route = useRoute();
+      const role = route.query.role || "";
+      const store = useStore(key);
+      store.commit(UPDATE_SKILL_SEARCH_TERM, role);
+    };
+
+    onMounted(parseSkillSearchForm);
   },
 });
 </script>
